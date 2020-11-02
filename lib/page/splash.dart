@@ -8,6 +8,9 @@ import 'package:flutter_rss/services/call_mail_sms_services.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 
+///
+/// todo x: 欢迎引导页
+///
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -21,8 +24,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   _initTheme() async {
-    String colorKey =
-        SpUtil.getString(SpConstant.keyThemeColor, defValue: 'blue');
+    String colorKey = SpUtil.getString(SpConstant.keyThemeColor, defValue: 'blue');
     // 设置初始化主题颜色
     Provider.of<AppInfoProvider>(context, listen: false).setTheme(colorKey);
   }
@@ -47,11 +49,18 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    ///
+    ///
+    ///
     return new SplashScreen(
-      seconds: 2,
+      seconds: 1,
+
+      ///
+      ///
+      /// jump to page:
+      ///
       navigateAfterSeconds: new HomePage(),
-      title: new Text(S.of(context).appInfo,
-          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+      title: new Text(S.of(context).appInfo, style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
       image: new Image.asset('assets/icon/logo.png', width: 100, height: 100),
       backgroundColor: Colors.white,
       styleTextUnderTheLoader: new TextStyle(),

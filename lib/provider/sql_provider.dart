@@ -2,6 +2,9 @@ import 'package:flutter_rss/common/sql_table_data.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+///
+///
+///
 class DBProvider {
   static Database db;
 
@@ -10,8 +13,11 @@ class DBProvider {
     if (db == null) {
       return Future.value([]);
     }
-    List tables = await db
-        .rawQuery('SELECT name FROM sqlite_master WHERE type = "table"');
+
+    ///
+    /// todo x: db query table name
+    ///
+    List tables = await db.rawQuery('SELECT name FROM sqlite_master WHERE type = "table"');
     List<String> targetList = [];
     tables.forEach((item) {
       targetList.add(item['name']);
@@ -38,6 +44,10 @@ class DBProvider {
     //Get a location using getDatabasesPath
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, SqlTable.dbName);
+
+    ///
+    /// todo x: db conn:
+    ///
     try {
       db = await openDatabase(path);
     } catch (e) {
@@ -54,8 +64,10 @@ class DBProvider {
       // Delete the database
       await deleteDatabase(path);
 
-      db = await openDatabase(path, version: 1,
-          onCreate: (Database db, int version) async {
+      ///
+      /// todo x: db del, and recreate.
+      ///
+      db = await openDatabase(path, version: 1, onCreate: (Database db, int version) async {
         // When creating the db, create the table
         await db.execute(SqlTable.sqlCreateTableRss);
 

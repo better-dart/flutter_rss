@@ -21,6 +21,9 @@ Map<String, Color> themeColorMap = {
   'black': Colors.black,
 };
 
+///
+/// todo x: provider 使用:
+///
 class AppInfoProvider with ChangeNotifier {
   String _themeColor = '';
   String _language = 'zh';
@@ -29,12 +32,18 @@ class AppInfoProvider with ChangeNotifier {
 
   String get language => _language;
 
+  ///
+  /// SharedPreferences 设置: 本地语言
+  ///
   setLocale(String language) {
     _language = language;
     notifyListeners();
     SpUtil.putString(SpConstant.LANGUAGE, language);
   }
 
+  ///
+  /// SharedPreferences 设置: 本地主题
+  ///
   setTheme(String themeColor) {
     _themeColor = themeColor;
     notifyListeners();

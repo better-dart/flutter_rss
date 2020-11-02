@@ -24,8 +24,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///
+    ///
+    ///
     return MultiProvider(
       providers: [ChangeNotifierProvider.value(value: AppInfoProvider())],
+
+      ///
+      ///
+      ///
       child: Consumer<AppInfoProvider>(
         builder: (context, appInfo, _) {
           String colorKey = appInfo.themeColor;
@@ -40,30 +47,37 @@ class MyApp extends StatelessWidget {
             _locale = const Locale('en', 'US');
           }
 
+          ///
+          ///
+          ///
           return FlutterEasyLoading(
-              child: MaterialApp(
-            // 设置语言
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate
-            ],
-            // 讲zh设置为第一项,没有适配语言时，英语为首选项
-            supportedLocales: S.delegate.supportedLocales,
-            // 设置默认语言
-            locale: _locale,
-            // 去除右上角Debug标签
-            debugShowCheckedModeBanner: false,
-            title: 'RSS 阅读器',
-            theme: ThemeData(
-                primaryColor: _themeColor,
-                accentColor: _themeColor,
-                floatingActionButtonTheme:
-                    FloatingActionButtonThemeData(backgroundColor: _themeColor),
-                indicatorColor: Colors.white),
-            home: SplashPage(),
-          ));
+            child: MaterialApp(
+              // 设置语言
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate
+              ],
+              // 讲zh设置为第一项,没有适配语言时，英语为首选项
+              supportedLocales: S.delegate.supportedLocales,
+              // 设置默认语言
+              locale: _locale,
+              // 去除右上角Debug标签
+              debugShowCheckedModeBanner: false,
+              title: 'RSS 阅读器',
+              theme: ThemeData(
+                  primaryColor: _themeColor,
+                  accentColor: _themeColor,
+                  floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: _themeColor),
+                  indicatorColor: Colors.white),
+
+              ///
+              /// 欢迎引导页:
+              ///
+              home: SplashPage(),
+            ),
+          );
         },
       ),
     );
